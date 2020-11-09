@@ -46,7 +46,7 @@ export default () => {
                     const userCopy = { ...user }
                     setUser({})
                     setUser(userCopy)
-                    // console.log(uploadImg)
+                    console.log(uploadImg)
             })
     }
 
