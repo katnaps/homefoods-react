@@ -8,7 +8,7 @@ export default ({setOpen, setLogin}) => {
 	const [password, setPassword] = useState("")
 	const [passwordConf, setPasswordConf] = useState("")
 
-	const handleSignUp = () => {
+	const handleSignUp = (e) => {
 		axios.post("https://homefoods1.herokuapp.com/api/v1/users/", {
 			username,
 			email,
@@ -24,10 +24,10 @@ export default ({setOpen, setLogin}) => {
 
 	return (
 		<>
-			<input value={username} placeholder="Username" onChange={(e) => {setUsername(e.target.value)}} />
-			<input value={email} placeholder="Email" onChange={(e) => {setEmail(e.target.value)}} />
-			<input value={password} placeholder="Password" onChange={(e) => {setPassword(e.target.value)}} />
-			<input value={passwordConf} placeholder="Confirm Password" onChange={(e) => {setPasswordConf(e.target.value)}} />
+			<input value={username} type="text" placeholder="Username" onChange={(e) => {setUsername(e.target.value)}} />
+			<input value={email} type="email" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}} />
+			<input value={password} type="password" placeholder="Password" onChange={(e) => {setPassword(e.target.value)}} />
+			<input value={passwordConf} type="password" placeholder="Confirm Password" onChange={(e) => {setPasswordConf(e.target.value)}} />
 			<button onClick={handleSignUp} disabled={!email || !username || !password || !passwordConf || (password !== passwordConf)}>Sign Up</button>
 		</>
 	)

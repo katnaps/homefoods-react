@@ -5,7 +5,7 @@ export default ({setLogin, setOpen}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
         axios.post("https://homefoods1.herokuapp.com/api/v1/login/", {
             username,
             password
@@ -19,10 +19,18 @@ export default ({setLogin, setOpen}) => {
         })
     }
 
+    const handleUsername = e => {
+        setUsername(e.target.value)
+    }
+
+    const handlePassword = e => {
+        setPassword(e.target.value)
+    }
+
     return (
         <>
-            <input value={username} placeholder="Username" onChange={(e) => {setUsername(e.target.value)}} />
-            <input value={password} placeholder="Password" onChange={(e) => {setPassword(e.target.value)}} />
+            <input value={username} placeholder="Username" type="text" onChange={handleUsername} />
+            <input value={password} placeholder="Password" type="password" onChange={handlePassword} />
             <button onClick={handleLogin}>Login</button>
         </>
     )
