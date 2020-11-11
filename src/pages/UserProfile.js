@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import axios from 'axios';
-import SessionContext from '../contexts/SessionContext.js'
+import SessionContext from '../contexts/SessionContext'
 
 export default () => {
     const { isLoggedIn } = useContext(SessionContext)

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import SignUp from './Signup.js'
-import Login from './Login.js'
-import SessionContext from '../contexts/SessionContext.js'
+import SignUp from './Signup'
+import Login from './Login'
+import SessionContext from '../contexts/SessionContext'
 
 const modalStyle = {
 	height: "80vh",
