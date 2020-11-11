@@ -20,8 +20,9 @@ export default (recipe) => {
 
         Axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY}`)
         .then(response => {
-            console.log(response.data.[0].steps)
-            setSteps(response.data.[0].steps)
+            console.log(response.data[0])
+            let steps = response.data[0].steps
+            setSteps(steps)
         })
         // .catch(error => {
         //     console.log(error)
@@ -32,7 +33,7 @@ export default (recipe) => {
         //  
         // })
 
-    }, [])
+    }, [recipe])
     return (
         <div>
             

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage.js';
 import UserProfile from './pages/UserProfile.js';
 import Recipe from './pages/Recipe';
+import RecipePage from './pages/RecipePage';
 import Modal from './containers/Modal.js';
 import NavBar from './components/NavBar.js';
 
@@ -14,6 +15,7 @@ function App() {
      <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/users/:id" component={UserProfile} />
+        <Route path="/recipes/" component={RecipePage} />
         <Route path="/recipe/:id" component={Recipe} />
      </Switch>
    </Modal>
