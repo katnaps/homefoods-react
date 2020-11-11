@@ -62,7 +62,7 @@ export default () => {
             {
                 isRecipes.map(recipe => (
                     <div key={recipe.id}>
-                        <img src={recipe.image} width="200" />
+                        <img src={recipe.image} width="250" />
                         <p>{recipe.title}</p>
                         <button>
                             <Link to={{

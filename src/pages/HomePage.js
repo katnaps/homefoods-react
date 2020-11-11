@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WebContent from '../containers/WebContent'
+import axios from 'axios';
+
 
 
 export default () => {
-    
-    // const getRecipesThree = (e) => {
-    //     if(queryOne !=="" && queryTwo !=="" && queryThree !=="") {
-    //         axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${queryOne},+${queryTwo},+${queryThree}&number=10`)
-    //             .then(response => {
-    //                 console.log(response.data)
-    //                 setRecipes(response.data)
-    //             })
-    //     } else {
-    //         setAlert("Please fill in ingredients")
-    //     }
-    // }
+    const API_KEY = process.env.REACT_APP_SPOON_API_KEY
+    const [random, setRandom] = useState([])
+
+    useEffect(() => {
+        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=10`)
+        .then(response => {
+            console.log(response.data.recipes)
+            setRandom(response.data.recipes)
+        })
+    }, [])
 
   
 
     return (
         <>
-            <WebContent />
+            <WebContent random={random} />
+           
         </>
     )
 }

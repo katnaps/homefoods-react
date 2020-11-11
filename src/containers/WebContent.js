@@ -1,8 +1,28 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-export default () => {
+export default ({random}) => {
 
     return(
-        <p>Hello World</p>
+        <>
+        {
+            random.map(randomRecipe => (
+                <div key={randomRecipe.id}>
+                    <img src={randomRecipe.image} width="250" />
+                    <h3>{randomRecipe.title}</h3>
+                    <button>
+                        <Link to={{
+                            pathname: `/recipe/${randomRecipe.id}`,
+                            recipe: {
+                                id: randomRecipe.id,
+                                title: randomRecipe.title,
+                                image: randomRecipe.image
+                            }
+                        }}>Get Recipe</Link>
+                    </button>
+                </div>
+            ))
+        }
+        </>
     )
 }
