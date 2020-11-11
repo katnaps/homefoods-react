@@ -4,11 +4,20 @@ import React, { useState, useEffect } from 'react'
 export default (recipe) => {
     const API_KEY = process.env.REACT_APP_SPOON_API_KEY
     const [isSteps, setSteps] = useState([])
+    const [imageURL, setImageURL] = useState("")
+    const [title, setTitle] = useState("")
+
+    console.log(recipe.location.recipe.id)
+    console.log(recipe.location.recipe.image)
+    console.log(recipe.location.recipe.title)
     
     
     useEffect(() => {
-        console.log(recipe.location.recipe.id)
+        
+        setImageURL(recipe.location.recipe.image)
+        setTitle(recipe.location.recipe.title)
         const id = recipe.location.recipe.id
+
         Axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY}`)
         .then(response => {
             console.log(response.data.[0].steps)
@@ -26,16 +35,20 @@ export default (recipe) => {
     }, [])
     return (
         <div>
+            
+            <img src={imageURL} width="200" />
+            <h1>{title}</h1>
+            
             {
                 isSteps.map(steps => (
                     <div key={steps.number}>
                         <h2>Step: {steps.number}</h2>
+                        <h3>Ingredients</h3>
                         {
                             steps.ingredients.map(ingredients => (
-                                <div key={ingredients.id}>
-                                    <h3>Ingredients</h3>
-                                <span>{`${ingredients.name} `}</span>
-                                </div>
+                                <ul key={ingredients.id}>
+                                <li>{`${ingredients.name} `}</li>
+                                </ul>
                             ))
                         }
                         <p>{steps.step}</p>

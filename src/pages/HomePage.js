@@ -73,7 +73,11 @@ export default () => {
                         <button>
                             <Link to={{
                                 pathname: `/recipe/${recipe.id}`,
-                                recipe: { id: recipe.id }
+                                recipe: { 
+                                    id: recipe.id,
+                                    title: recipe.title,
+                                    image: recipe.image
+                                }
                         }}>Get Recipe</Link>
                         </button>
                     </div>
