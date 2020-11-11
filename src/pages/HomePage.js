@@ -16,12 +16,9 @@ export default () => {
         })
     }, [])
 
-  
-
     return (
         <>
             <WebContent random={random} />
-           
         </>
     )
 }
