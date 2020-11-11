@@ -20,6 +20,7 @@ const {openLogin, openSignUp, isLoggedIn, setLogin} = useContext(SessionContext)
 			<>
 			<Link to="/users/me" >Profile</Link>
 			<Link to="/recipes/" >Search for Recipes</Link>
+			<Link to="/food/" >Upload Food Image</Link>
 			</>
 		  	: null
 		  }

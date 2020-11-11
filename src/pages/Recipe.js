@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
 export default (recipe) => {
@@ -18,11 +18,11 @@ export default (recipe) => {
         setTitle(recipe.location.recipe.title)
         const id = recipe.location.recipe.id
 
-        Axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY}`)
+        axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY}`)
         .then(response => {
             console.log(response.data[0])
-            let steps = response.data[0].steps
-            setSteps(steps)
+           
+            setSteps(response.data[0].steps)
         })
         // .catch(error => {
         //     console.log(error)
