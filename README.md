@@ -3,14 +3,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-###
-
-use command in terminal:
-npm install
+# Use command in terminal:
+### `npm install`
 
 to install dependency packages for this application
 
-###
 
 ## Available Scripts
 
