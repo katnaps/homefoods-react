@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WebContent from '../containers/WebContent'
+import RandRecipeCard from '../components/RandRecipeCard'
 import axios from 'axios';
 
 
@@ -9,7 +9,7 @@ export default () => {
     const [random, setRandom] = useState([])
 
     useEffect(() => {
-        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=10`)
+        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5`)
         .then(response => {
             console.log(response.data.recipes)
             setRandom(response.data.recipes)
@@ -18,7 +18,7 @@ export default () => {
 
     return (
         <>
-            <WebContent random={random} />
+            <RandRecipeCard random={random} />
         </>
     )
 }

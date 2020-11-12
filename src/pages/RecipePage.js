@@ -1,10 +1,10 @@
-import React, { useState, useContext  } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Alert from '../components/Alert';
 import { Link, Redirect, useParams } from 'react-router-dom';
 import SessionContext from '../contexts/SessionContext'
 
-import WebContent from '../containers/WebContent';
+import RecipeCard from '../components/RecipeCard';
 
 export default () => {
     const API_KEY = process.env.REACT_APP_SPOON_API_KEY
@@ -30,6 +30,11 @@ export default () => {
             setAlert("Please fill in ingredients")
         }
     }
+
+    useEffect(() => {
+        getRecipes()
+    }, [])
+
 
     if (!isLoggedIn || (id === "me" && !localStorage.getItem("token"))) {
         return <Redirect to="/" />
@@ -62,7 +67,7 @@ export default () => {
             <br />
             <button onClick={getRecipes}>Get Search</button>
 
-            <WebContent isRecipes={isRecipes} />
+            <RecipeCard isRecipes={isRecipes} />
 
             {/* {
                 isRecipes.map(recipe => (

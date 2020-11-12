@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default () => {
 
-	const { openLogin, openSignUp, isLoggedIn, setLogin } = useContext(SessionContext)
+	const { openLogin, openSignUp, isLoggedIn, setLogin,  } = useContext(SessionContext)
 
 	const handleLogout = () => {
 		localStorage.removeItem("token")
@@ -35,7 +35,7 @@ export default () => {
 							</Nav>
 							<Form inline>
 								<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-								<Button variant="outline-info">Search</Button>
+								<Button className="mx-2 my-2" variant="outline-info">Search</Button>
 							</Form>
 						</>
 						: null
@@ -43,7 +43,7 @@ export default () => {
 				}
 				{
 					
-					isLoggedIn ? <Button variant="danger" onClick={handleLogout}>Search</Button>
+					isLoggedIn ? <Button className="mx-2 my-2" variant="danger" onClick={handleLogout}>Logout</Button>
 					:
 					<>
 		 			<Button variant="primary" onClick={openLogin} className="mx-2">Login</Button>
@@ -52,7 +52,7 @@ export default () => {
 				}
 			</Navbar.Collapse>
 		</Navbar>
-		
+
 		// {/* <h2>Navbar</h2>
 		// <Link to="/" >Home</Link>
 		// {
