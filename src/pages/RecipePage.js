@@ -4,6 +4,8 @@ import Alert from '../components/Alert';
 import { Link, Redirect, useParams } from 'react-router-dom';
 import SessionContext from '../contexts/SessionContext'
 
+import WebContent from '../containers/WebContent';
+
 export default () => {
     const API_KEY = process.env.REACT_APP_SPOON_API_KEY
     const { isLoggedIn } = useContext(SessionContext)
@@ -59,7 +61,10 @@ export default () => {
             <input onChange={ingredInputThree} type="text" /> */}
             <br />
             <button onClick={getRecipes}>Get Search</button>
-            {
+
+            <WebContent isRecipes={isRecipes} />
+
+            {/* {
                 isRecipes.map(recipe => (
                     <div key={recipe.id}>
                         <img src={recipe.image} width="250" />
@@ -76,7 +81,7 @@ export default () => {
                         </button>
                     </div>
                 ))
-            }
+            } */}
         </>
     )
 }

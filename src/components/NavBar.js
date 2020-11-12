@@ -20,40 +20,57 @@ export default () => {
 	}
 
 	return (
+
+		<Navbar bg="dark" variant="dark" expand="lg">
+			<Navbar.Brand><Link to="/" style={{ color: "white", textDecoration: "none" }}>HomeFoods</Link></Navbar.Brand>
+			<Navbar.Toggle aria-controls="basic-navbar-nav" />
+			<Navbar.Collapse id="basic-navbar-nav">
+				{
+					isLoggedIn ?
+						<>
+							<Nav className="mr-auto">
+								<Nav.Link><Link to="/users/me" style={{ color: "#9A9DA0", textDecoration: "none" }}>Profile</Link></Nav.Link>
+								<Nav.Link><Link to="/recipes/" style={{ color: "#9A9DA0", textDecoration: "none" }}>Search for Recipes</Link></Nav.Link>
+								<Nav.Link><Link to="/food/" style={{ color: "#9A9DA0", textDecoration: "none" }}>Upload Food Image</Link></Nav.Link>
+							</Nav>
+							<Form inline>
+								<FormControl type="text" placeholder="Search" className="mr-sm-2" />
+								<Button variant="outline-info">Search</Button>
+							</Form>
+						</>
+						: null
+
+				}
+				{
+					
+					isLoggedIn ? <Button variant="danger" onClick={handleLogout}>Search</Button>
+					:
+					<>
+		 			<Button variant="primary" onClick={openLogin} className="mx-2">Login</Button>
+					<Button variant="success" onClick={openSignUp} className="mx-2">Sign Up</Button>
+					</>
+				}
+			</Navbar.Collapse>
+		</Navbar>
 		
-			<Navbar bg="dark" variant="dark" expand="lg">
-				<Navbar.Brand href="#home">HomeFoods</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="mr-auto">
-					<Nav.Link href="#home">Home</Nav.Link>
-					<Nav.Link href="#features">Features</Nav.Link>
-					<Nav.Link href="#pricing">Pricing</Nav.Link>
-				</Nav>
-				<Form inline>
-					<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-					<Button variant="outline-info">Search</Button>
-				</Form>
-				</Navbar.Collapse>
-			</Navbar>
-			// {/* <h2>Navbar</h2>
-			// <Link to="/" >Home</Link>
-			// {
-			// 	isLoggedIn ?
-			// 		<>
-			// 			<Link to="/users/me" >Profile</Link>
-			// 			<Link to="/recipes/" >Search for Recipes</Link>
-			// 			<Link to="/food/" >Upload Food Image</Link>
-			// 		</>
-			// 		: null
-			// }
-			// {
-			// 	isLoggedIn ? <button onClick={handleLogout}>Logout</button> :
-			// 		<>
-			// 			<button onClick={openSignUp}>Sign Up</button>
-			// 			<button onClick={openLogin}>Login</button>
-			// 		</>
-			// } */}
-		
+		// {/* <h2>Navbar</h2>
+		// <Link to="/" >Home</Link>
+		// {
+		// 	isLoggedIn ?
+		// 		<>
+		// 			<Link to="/users/me" >Profile</Link>
+		// 			<Link to="/recipes/" >Search for Recipes</Link>
+		// 			<Link to="/food/" >Upload Food Image</Link>
+		// 		</>
+		// 		: null
+		// }
+		// {
+		// 	isLoggedIn ? <button onClick={handleLogout}>Logout</button> :
+		// 		<>
+		// 			<button onClick={openSignUp}>Sign Up</button>
+		// 			<button onClick={openLogin}>Login</button>
+		// 		</>
+		// } */}
+
 	)
 } 
