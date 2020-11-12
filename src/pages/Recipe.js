@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 
+import Container from 'react-bootstrap/Container'
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,8 @@ export default (recipe) => {
     const [title, setTitle] = useState("")
     const [sourceURL, setSourceURL] = useState("")
     const [author, setAuthor] = useState("")
+    const [cookTime, setCookTime] = useState("")
+
     let { id } = useParams()
 
     useEffect(() => {
@@ -30,6 +33,7 @@ export default (recipe) => {
                 setTitle(resp.data.title)
                 setSourceURL(resp.data.sourceUrl)
                 setAuthor(resp.data.sourceName)
+                setCookTime(resp.data.cookingMinutes)
             })
 
         // https://spoonacular.com/food-api/docs#Get-Analyzed-Recipe-Instructions
@@ -51,33 +55,37 @@ export default (recipe) => {
     }, [id])
     return (
         <>
-            <Jumbotron className="bg-dark mt-4 text-light">
-                <h1>{title}</h1>
+            <Container className="mt-4">
+                <Jumbotron className="bg-dark mt-4 text-light">
+                    <h1>{title}</h1>
                     <Image src={imageURL} fluid className=" rounded d-block mx-auto mt-3 mb-3" />
-                <h3>
-                    Recipe Author: {author}
-                </h3>
-                <p className="mt-4">
-                    <Button variant="primary" href={sourceURL} target="_blank">Learn more</Button>
-                </p>
-            </Jumbotron>
-
-            {
-                isSteps.map(steps => (
-                    <div key={steps.number}>
-                        <h2>Step: {steps.number}</h2>
-                        <h5>Ingredients</h5>
-                        {
-                            steps.ingredients.map(ingredients => (
-                                <ul key={ingredients.id}>
-                                    <li>{`${ingredients.name} `}</li>
-                                </ul>
-                            ))
-                        }
-                        <p>{steps.step}</p>
-                    </div>
-                ))
-            }
+                    <h3>
+                        Recipe Author: {author}
+                    </h3>
+                    <p className="font-weight-normal">Duration to make: {cookTime} minutes</p>
+                    <p className="mt-4">
+                        <Button variant="primary" href={sourceURL} target="_blank">Learn more</Button>
+                    </p>
+                </Jumbotron>
+                <Container>
+                    {
+                        isSteps.map(steps => (
+                            <div key={steps.number}>
+                                <h2>Step: {steps.number}</h2>
+                                <h6>Ingredients:</h6>
+                                {
+                                    steps.ingredients.map(ingredients => (
+                                        <ul key={ingredients.id}>
+                                            <li>{`${ingredients.name} `}</li>
+                                        </ul>
+                                    ))
+                                }
+                                <p>{steps.step}</p>
+                            </div>
+                        ))
+                    }
+                </Container>
+            </Container>
         </>
     )
 }

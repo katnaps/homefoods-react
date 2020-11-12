@@ -8,11 +8,12 @@ import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export default ({ setLogin, setOpen }) => {
+export default ({ setLogin, setOpen, openSignUp}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     const handleLogin = (e) => {
+		e.preventDefault()
 
         if(username !== "" && password !== "") {
             
@@ -37,7 +38,7 @@ export default ({ setLogin, setOpen }) => {
                             progress: undefined,
                         })
                     } else {
-                        toast('Please Fill correct credentials', {
+                        toast.error('Please Fill correct credentials', {
                             position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -67,6 +68,25 @@ export default ({ setLogin, setOpen }) => {
 
     }
 
+    const googleLogin = (e) => {
+		e.preventDefault()
+        axios.get("https://homefoods1.herokuapp.com/api/v1/login/google_login")
+		.then(resp => {
+			localStorage.setItem("token", resp.data.auth_token)
+			setOpen(false)
+			setLogin(resp.data.auth_token)
+            toast('🦄 Google signin works!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+		})
+	}
+
     const handleUsername = (e) => {
         setUsername(e.target.value)
     }
@@ -77,7 +97,7 @@ export default ({ setLogin, setOpen }) => {
 
     return (
         <>
-            <Form className="m-3">
+            <Form onSubmit={handleLogin} className="m-3" >
                 <Form.Group>
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Username" onChange={handleUsername} value={username} />
@@ -87,10 +107,15 @@ export default ({ setLogin, setOpen }) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" onChange={handlePassword} value={password} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleLogin}>
+                <Button type="submit" variant="primary"  >
                     Login
                 </Button>
+                <p className="forgot-password text-right">
+                    No account? <a onClick={openSignUp}>sign up?</a>
+                </p>
             </Form>
+            <Button onClick={googleLogin}><i class="fab fa-google"></i>Google</Button>
+            <a onClick={googleLogin}>Sign In With Google</a>
         </>
         )
     }

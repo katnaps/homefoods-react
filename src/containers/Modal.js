@@ -38,9 +38,9 @@ export default ({ children }) => {
 
 	const renderForm = () => {
 		if (isLoginForm) {
-			return <Login setLogin={setLogin} setOpen={setOpen} />
+			return <Login setLogin={setLogin} setOpen={setOpen}  openSignUp={openSignUp}/>
 		} else {
-			return <SignUp setLogin={setLogin} setOpen={setOpen} />
+			return <SignUp setLogin={setLogin} setOpen={setOpen} openLogin={openLogin}/>
 		}
 	}
 
@@ -54,7 +54,7 @@ export default ({ children }) => {
 								<Modal.Title>{status}</Modal.Title>
 							</Modal.Header>
 							{renderForm()}
-							
+
 							{/* <Modal.Body>
 								<p>Modal body text goes here.</p>
 							</Modal.Body> */}

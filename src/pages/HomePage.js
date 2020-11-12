@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import RandRecipeCard from '../components/RandRecipeCard'
 import axios from 'axios';
 
+import SearchContext from '../contexts/SearchContext'
 
-
-export default () => {
+export default ({showRand, setShowRand}) => {
     const API_KEY = process.env.REACT_APP_SPOON_API_KEY
     const [random, setRandom] = useState([])
+
 
     useEffect(() => {
         axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5`)
@@ -14,7 +15,7 @@ export default () => {
             console.log(response.data.recipes)
             setRandom(response.data.recipes)
         })
-    }, [])
+    }, [showRand, setShowRand])
 
     return (
         <>

@@ -10,13 +10,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 
 
-export default ({setOpen, setLogin}) => {
+export default ({setOpen, setLogin, openLogin}) => {
 	const [username, setUsername] = useState("")
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [passwordConf, setPasswordConf] = useState("")
 
 	const handleSignUp = (e) => {
+		e.preventDefault()
+
 		axios.post("https://homefoods1.herokuapp.com/api/v1/users/", {
 			username,
 			email,
@@ -24,7 +26,7 @@ export default ({setOpen, setLogin}) => {
 		})
 		.then(response => {
 			if(response.data.status == "failed") {
-				toast('Details not unique', {
+				toast.error('Details not unique', {
 					position: "top-center",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -69,7 +71,7 @@ export default ({setOpen, setLogin}) => {
 
 	return (
 		<>
-			 <Form className="m-3">
+			 <Form onSubmit={handleSignUp} className="m-3" >
                 <Form.Group>
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Username" onChange={handleUsername} value={username} />
@@ -88,9 +90,12 @@ export default ({setOpen, setLogin}) => {
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control type="password" placeholder="Confirm Password" onChange={handleConfirm} value={passwordConf} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleSignUp} disabled={!email || !username || !password || !passwordConf || (password !== passwordConf)}>
+                <Button type="submit" variant="primary"  disabled={!email || !username || !password || !passwordConf || (password !== passwordConf)}>
                     Sign Up
                 </Button>
+				<p className="forgot-password text-right">
+                    Already registered? <a onClick={openLogin}>sign in?</a>
+                </p>
             </Form>
 		</>
 	)
