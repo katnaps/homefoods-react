@@ -8,19 +8,25 @@ import Recipe from './pages/Recipe';
 import RecipePage from './pages/RecipePage';
 import FoodAnalyze from './pages/FoodAnalyze';
 
+import Container from 'react-bootstrap/Container'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 function App() {
   return (
-   <Modal>
-     <NavBar />
-     <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/users/:id" component={UserProfile} />
-        <Route path="/recipes/" component={RecipePage} />
-        <Route path="/recipe/:id" component={Recipe} />
-        <Route path="/food/" component={FoodAnalyze} />
-     </Switch>
-   </Modal>
+    <Container fluid >
+      <Modal>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/users/:id" component={UserProfile} />
+          <Route path="/recipes/" component={RecipePage} />
+          <Route path="/recipe/:id" component={Recipe} />
+          <Route path="/food/" component={FoodAnalyze} />
+        </Switch>
+      </Modal>
+    </Container>
   );
 }
 
