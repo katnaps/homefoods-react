@@ -5,29 +5,14 @@ import SessionContext from '../contexts/SessionContext'
 
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import ModalDialog from 'react-bootstrap/ModalDialog'
-import ModalHeader from 'react-bootstrap/ModalHeader'
-import ModalTitle from 'react-bootstrap/ModalTitle'
-import ModalBody from 'react-bootstrap/ModalBody'
-import ModalFooter from 'react-bootstrap/ModalFooter'
 
-const modalStyle = {
-	height: "80vh",
-	width: "80vh",
-	border: "1px solid black",
-	backgroundColor: "white",
-	position: "absolute"
-}
-
-const modalContainerStyle = {
-	display: "flex",
-	justifyContent: "center"
-}
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default ({ children }) => {
 	const [isOpen, setOpen] = useState(false)
 	const [isLoginForm, setIsLoginForm] = useState(true)
+	const [status, setStatus] = useState("")
 	const [isLoggedIn, setLogin] = useState(localStorage.getItem("token"))
 
 	const open = () => {
@@ -42,48 +27,44 @@ export default ({ children }) => {
 	const openLogin = () => {
 		setOpen(true)
 		setIsLoginForm(true)
+		setStatus("Login")
 	}
 
 	const openSignUp = () => {
 		setOpen(true)
 		setIsLoginForm(false)
+		setStatus("Sign Up")
 	}
 
 	const renderForm = () => {
 		if (isLoginForm) {
-			return <Login setLogin={setLogin} setOpen={setOpen} />
+			return <Login setLogin={setLogin} setOpen={setOpen}  openSignUp={openSignUp}/>
 		} else {
-			return <SignUp setLogin={setLogin} setOpen={setOpen} />
+			return <SignUp setLogin={setLogin} setOpen={setOpen} openLogin={openLogin}/>
 		}
 	}
 
 	const renderContent = () => {
 		return (
 			<SessionContext.Provider value={{ openLogin, openSignUp, close, isLoggedIn, setLogin }}>
-				{
-					isOpen ?
-						<Modal.Dialog>
+				
+					<Modal show={isOpen} onHide={close}>
+				
 							<Modal.Header closeButton>
-								<Modal.Title>Modal title</Modal.Title>
+								<Modal.Title>{status}</Modal.Title>
 							</Modal.Header>
+							{renderForm()}
 
-							<Modal.Body>
+							{/* <Modal.Body>
 								<p>Modal body text goes here.</p>
-							</Modal.Body>
+							</Modal.Body> */}
 
 							<Modal.Footer>
-								<Button variant="secondary">Close</Button>
-								<Button variant="primary">Save changes</Button>
+								<Button variant="secondary" onClick={close}>Close</Button>
 							</Modal.Footer>
-						</Modal.Dialog>
-					// <div style={modalContainerStyle}>
-					// 	<div style={modalStyle}>
-					// 		{renderForm()}
-					// 		<button onClick={() => close()}>X</button>
-					// 	</div>
-					// </div> 
-					: null
-				}
+					
+						</Modal>
+					
 				{children}
 			</SessionContext.Provider>
 		)
