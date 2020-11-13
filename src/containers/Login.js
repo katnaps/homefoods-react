@@ -7,10 +7,14 @@ import Button from 'react-bootstrap/Button'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import {GoogleAPI,GoogleLogin} from 'react-google-oauth'
+
+
 
 export default ({ setLogin, setOpen, openSignUp}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    
 
     const handleLogin = (e) => {
 		e.preventDefault()
@@ -28,7 +32,7 @@ export default ({ setLogin, setOpen, openSignUp}) => {
                         localStorage.setItem("token", response.data.token)
                         setOpen(false)
                         setLogin(response.data.token)
-                        toast('🦄 Welcome back!', {
+                        toast.info('🥙 Welcome back!', {
                             position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -38,7 +42,7 @@ export default ({ setLogin, setOpen, openSignUp}) => {
                             progress: undefined,
                         })
                     } else {
-                        toast.error('Please Fill correct credentials', {
+                        toast.error('🍋 Please Fill correct credentials', {
                             position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -55,7 +59,7 @@ export default ({ setLogin, setOpen, openSignUp}) => {
                 })
 
         } else {
-            toast('Please Fill in credentials', {
+            toast.error('🥗 Please Fill in credentials', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -111,11 +115,16 @@ export default ({ setLogin, setOpen, openSignUp}) => {
                     Login
                 </Button>
                 <p className="forgot-password text-right">
-                    No account? <a onClick={openSignUp}>sign up?</a>
+                    No account? 
+                <Button className="ml-2" variant="success" onClick={openSignUp}>Sign up</Button>
                 </p>
             </Form>
-            <Button onClick={googleLogin}><i class="fab fa-google"></i>Google</Button>
-            <a onClick={googleLogin}>Sign In With Google</a>
+            <p className="text-center" style={{fontSize:'20px'}}>OR</p>
+            <div className="text-center" style={{paddingBottom:'10px'}}>
+            <GoogleAPI  >
+              	<GoogleLogin disabled/>
+            </GoogleAPI>   
+            </div>
         </>
         )
     }

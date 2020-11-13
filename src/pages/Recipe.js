@@ -7,7 +7,10 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 
 import Container from 'react-bootstrap/Container'
-
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/CardGroup'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -70,29 +73,61 @@ export default (recipe) => {
                         <Button variant="primary" href={sourceURL} target="_blank">Learn more</Button>
                     </p>
                 </Jumbotron>
-                <Container>
+                <Container className="d-flex flex-column">
                     {
                         isSteps.map(steps => (
-                            <div key={steps.number}>
-                                <h2>Step: {steps.number}</h2>
-                                <h6>Items:</h6>
-                                {
-                                    steps.ingredients.map(ingredients => (
-                                        <ul key={ingredients.id}>
-                                            <li>{`${ingredients.name} `}</li>
-                                        </ul>
-                                    ))
-                                }
-                                <p>{steps.step}</p>
-                            </div>
+                            <CardGroup className="mb-3">
+                                <Card bg="dark" text="light" key={steps.number} border="info" style={{ width: '18rem' }}>
+                                    <Card.Header>Step: {steps.number}</Card.Header>
+                                    <h6 className="m-2">Items:</h6>
+                                    <Container className="d-flex flex-xl-row flex-lg-row flex-md-row flex-column">
+                                        {
+                                            steps.ingredients.map(ingredients => (
+                                                <Card.Body className="p-1" key={ingredients.id}>
+                                                    <ul>
+                                                        <li>{ingredients.name}</li>
+                                                    </ul>
+                                                </Card.Body>
+                                            ))
+                                        }
+                                    </Container>
+                                    <Card.Footer>
+                                        <Card.Text className="p-3">
+                                            {steps.step}
+                                        </Card.Text>
+                                    </Card.Footer>
+                                </Card>
+                            </CardGroup>
+
                         ))
                     }
-                </Container>
+                </Container >
                 <ScrollToTop showUnder={160}>
                     <Button variant="danger">
-                            UP</Button>
+                        UP</Button>
                 </ScrollToTop>
-            </Container>
+            </Container >
         </>
     )
 }
+
+
+
+
+
+
+
+
+
+// {/* <div key={steps.number}>
+// <Button variant="warning" >Step: {steps.number}</Button>
+// <h6>Items:</h6>
+// {
+// steps.ingredients.map(ingredients => (
+//     <ul key={ingredients.id}>
+//         <li>{`${ingredients.name} `}</li>
+//     </ul>
+// ))
+// }
+// <p>{steps.step}</p>
+// </div> */}

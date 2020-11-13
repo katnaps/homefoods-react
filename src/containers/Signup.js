@@ -26,7 +26,7 @@ export default ({setOpen, setLogin, openLogin}) => {
 		})
 		.then(response => {
 			if(response.data.status == "failed") {
-				toast.error('Details not unique', {
+				toast.error('🥭 Details not unique', {
 					position: "top-center",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -40,7 +40,7 @@ export default ({setOpen, setLogin, openLogin}) => {
 				localStorage.setItem("token", response.data.token)
 				setOpen(false)
 				setLogin(response.data.token)
-				toast('🦄 Successful signup!', {
+				toast.success('🎂 Successful signup!', {
 					position: "top-center",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -94,7 +94,8 @@ export default ({setOpen, setLogin, openLogin}) => {
                     Sign Up
                 </Button>
 				<p className="forgot-password text-right">
-                    Already registered? <a onClick={openLogin}>sign in?</a>
+                    Already registered? 
+					<Button className="ml-2" variant="success" onClick={openLogin}>Sign In</Button>
                 </p>
             </Form>
 		</>
