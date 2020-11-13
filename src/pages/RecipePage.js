@@ -114,13 +114,15 @@ export default () => {
             </ScrollToTop>
             <RecipeCard isRecipes={isRecipes} />
 
+            <Container className="mt-4">
                 {
                     showCount ?
-                        <Nav className="justify-content-end">
+                        <Nav className="justify-content-center mb-4">
                             <Button variant="warning" onClick={moreSearch}>More</Button>
                         </Nav>
                         : null
                 }
+            </Container>
         </>
     )
 }
