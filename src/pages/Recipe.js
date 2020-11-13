@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import ScrollToTop from 'react-scroll-up';
 
 
 export default (recipe) => {
@@ -21,6 +22,8 @@ export default (recipe) => {
     const [sourceURL, setSourceURL] = useState("")
     const [author, setAuthor] = useState("")
     const [cookTime, setCookTime] = useState("")
+
+
 
     let { id } = useParams()
 
@@ -72,7 +75,7 @@ export default (recipe) => {
                         isSteps.map(steps => (
                             <div key={steps.number}>
                                 <h2>Step: {steps.number}</h2>
-                                <h6>Ingredients:</h6>
+                                <h6>Items:</h6>
                                 {
                                     steps.ingredients.map(ingredients => (
                                         <ul key={ingredients.id}>
@@ -85,6 +88,10 @@ export default (recipe) => {
                         ))
                     }
                 </Container>
+                <ScrollToTop showUnder={160}>
+                    <Button variant="danger">
+                            UP</Button>
+                </ScrollToTop>
             </Container>
         </>
     )

@@ -10,7 +10,7 @@ export default ({showRand, setShowRand}) => {
 
 
     useEffect(() => {
-        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5`)
+        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=10`)
         .then(response => {
             console.log(response.data.recipes)
             setRandom(response.data.recipes)
