@@ -36,7 +36,7 @@ export default ({setOpen, setLogin, openLogin}) => {
 					progress: undefined,
 				});
 			} else {
-				console.log(response)
+				// console.log(response)
 				localStorage.setItem("token", response.data.token)
 				setOpen(false)
 				setLogin(response.data.token)

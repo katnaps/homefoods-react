@@ -41,8 +41,8 @@ export default () => {
         if (searchResult !== "") {
             axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${searchResult}&number=${count}`)
                 .then(response => {
-                    console.log(response)
-                    console.log(response.data)
+                    // console.log(response)
+                    // console.log(response.data)
                     setRecipes(response.data)
                     setShowCount(true)
                 })
@@ -72,8 +72,8 @@ export default () => {
         setCount(count + 10)
         axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${searchResult}&number=${count}`)
             .then(response => {
-                console.log(response)
-                console.log(response.data)
+                // console.log(response)
+                // console.log(response.data)
                 setRecipes(response.data)
             })
     }

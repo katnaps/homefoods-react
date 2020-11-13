@@ -34,7 +34,7 @@ export default (recipe) => {
 
         axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
             .then(resp => {
-                console.log(resp.data)
+                // console.log(resp.data)
                 setImageURL(resp.data.image)
                 setTitle(resp.data.title)
                 setSourceURL(resp.data.sourceUrl)
@@ -45,7 +45,7 @@ export default (recipe) => {
         // https://spoonacular.com/food-api/docs#Get-Analyzed-Recipe-Instructions
         axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY}`)
             .then(response => {
-                console.log(response.data[0])
+                // console.log(response.data[0])
 
                 setSteps(response.data[0].steps)
             })

@@ -33,7 +33,7 @@ export default () => {
             }
         })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 setUser({
                     ...response.data,
                     profileImage: response.data.image_path
@@ -64,7 +64,7 @@ export default () => {
                 const userCopy = { ...user }
                 setUser({})
                 setUser(userCopy)
-                console.log(uploadImg)
+                // console.log(uploadImg)
             })
     }
 
@@ -87,7 +87,7 @@ export default () => {
 
             })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 localStorage.setItem("token", response.data.token)
                 const userCopy = { ...user }
                 setUser({})

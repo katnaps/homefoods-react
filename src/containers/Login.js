@@ -26,7 +26,7 @@ export default ({ setLogin, setOpen, openSignUp}) => {
                 password
             })
                 .then(response => {
-                    console.log(response.data)
+                    
                     if(response.data.status == "success"){
 
                         localStorage.setItem("token", response.data.token)

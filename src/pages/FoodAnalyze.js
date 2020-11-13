@@ -34,8 +34,8 @@ export default () => {
         axios.post(`https://api.spoonacular.com/food/images/analyze?apiKey=${API_KEY}`, formFood)
             .then(response => {
                 foodInput.value = null
-                console.log(response.data.recipes)
-                console.log(response.data)
+                // console.log(response.data.recipes)
+                // console.log(response.data)
                 setFoodRelation(response.data.recipes)
                 setShowText(true)
             })
