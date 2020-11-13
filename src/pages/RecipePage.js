@@ -32,7 +32,7 @@ export default () => {
 
     const [isRecipes, setRecipes] = useState([])
 
-    const [count, setCount] = useState(9)
+    const [count, setCount] = useState(10)
     const [showCount, setShowCount] = useState(false)
 
 
@@ -69,7 +69,7 @@ export default () => {
     }
 
     const moreSearch = () => {
-        setCount(count + 9)
+        setCount(count + 10)
         axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${searchResult}&number=${count}`)
             .then(response => {
                 console.log(response)
@@ -86,38 +86,42 @@ export default () => {
 
 
     return (
-        <Container className="mt-4">
-            <Form onSubmit={getRecipes}>
-                <InputGroup className="mb-3">
-                    <FormControl
-                        className="text-center"
-                        onChange={handleSearch}
-                        placeholder="Input Ingredient"
-                        aria-label="Input Ingredient"
-                        aria-describedby="basic-addon2"
-                    />
-                    <InputGroup.Append>
-                        <Button
-                            variant="success"
-                            type="submit"
-                        >
-                            Look up recipe
+        <>
+            <Container className="mt-4">
+                <Form onSubmit={getRecipes}>
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            className="text-center"
+                            onChange={handleSearch}
+                            placeholder="Input Ingredient"
+                            aria-label="Input Ingredient"
+                            aria-describedby="basic-addon2"
+                        />
+                        <InputGroup.Append>
+                            <Button
+                                variant="success"
+                                type="submit"
+                            >
+                                Look up recipe
                     </Button>
-                    </InputGroup.Append>
-                </InputGroup>
-            </Form>
-            {
-                showCount ?
-                    <Nav className="justify-content-end">
-                        <Button variant="warning" onClick={moreSearch}>More</Button>
-                    </Nav>
-                    : null
-            }
+                        </InputGroup.Append>
+                    </InputGroup>
+                </Form>
+            </Container>
+
             <ScrollToTop showUnder={160}>
                 <Button variant="danger">UP</Button>
             </ScrollToTop>
             <RecipeCard isRecipes={isRecipes} />
-        </Container>
+
+                {
+                    showCount ?
+                        <Nav className="justify-content-end">
+                            <Button variant="warning" onClick={moreSearch}>More</Button>
+                        </Nav>
+                        : null
+                }
+        </>
     )
 }
 

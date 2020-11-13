@@ -17,7 +17,7 @@ export default ({ isRecipes }) => {
             <Row className="justify-content-center mt-4" >
                 {
                     isRecipes.map(recipe => (
-                        <Col key={recipe.id} lg="true" xs="true" className="mr-3 ml-3 mt-4">
+                        <Col key={recipe.id} lg="true" xs="true" className="mr-3 ml-3 mt-4 mb-4">
                             <CardDeck >
                                 <Card bg="dark" text="light" style={{ width: '18rem' }}>
                                     <Card.Img variant="top" src={recipe.image} className="w-100" />
